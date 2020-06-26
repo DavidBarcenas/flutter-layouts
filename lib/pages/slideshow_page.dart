@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
+import 'package:layouts/models/slider_model.dart';
 
 class SlideShowPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Column(children: [Expanded(child: _Slides()), _DotsSlide()]),
+    return ChangeNotifierProvider(
+      create: (_) => SliderModel(),
+      child: Scaffold(
+        body: Center(
+          child: Column(children: [Expanded(child: _Slides()), _DotsSlide()]),
+        ),
       ),
     );
   }
@@ -23,7 +28,9 @@ class __SlidesState extends State<_Slides> {
   @override
   void initState() {
     pageViewController.addListener(() {
-      print('Pagina actual: ${pageViewController.page}');
+      // Provider Update - Slider Model
+      Provider.of<SliderModel>(context, listen: false).currentPage =
+          pageViewController.page;
     });
     super.initState();
   }
@@ -88,11 +95,18 @@ class _Dot extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    final pageIndex = Provider.of<SliderModel>(context).currentPage;
+
+    return AnimatedContainer(
+      duration: Duration(milliseconds: 200),
       width: 10,
       height: 10,
       margin: EdgeInsets.symmetric(horizontal: 5),
-      decoration: BoxDecoration(color: Colors.black38, shape: BoxShape.circle),
+      decoration: BoxDecoration(
+          color: (pageIndex >= index - 0.5 && pageIndex < index + 0.5)
+              ? Colors.pinkAccent
+              : Colors.black26,
+          shape: BoxShape.circle),
     );
   }
 }

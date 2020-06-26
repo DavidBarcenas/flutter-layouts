@@ -5,7 +5,9 @@ class SlideShowPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(child: _Slides()),
+      body: Center(
+        child: Column(children: [Expanded(child: _Slides()), _DotsSlide()]),
+      ),
     );
   }
 }
@@ -35,6 +37,37 @@ class _Slide extends StatelessWidget {
       height: double.infinity,
       padding: EdgeInsets.all(18),
       child: SvgPicture.asset(svg),
+    );
+  }
+}
+
+class _DotsSlide extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      height: 70,
+      // color: Colors.red,
+      child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _Dot(),
+            _Dot(),
+            _Dot(),
+          ]),
+    );
+  }
+}
+
+class _Dot extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 10,
+      height: 10,
+      margin: EdgeInsets.symmetric(horizontal: 5),
+      decoration: BoxDecoration(color: Colors.black38, shape: BoxShape.circle),
     );
   }
 }

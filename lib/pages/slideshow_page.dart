@@ -6,7 +6,17 @@ class SlideShowPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SlideShow(
+        body: Column(children: [
+      Expanded(child: WrapSlideshow()),
+      Expanded(child: WrapSlideshow())
+    ]));
+  }
+}
+
+class WrapSlideshow extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return SlideShow(
       primaryBullet: 15,
       slides: <Widget>[
         SvgPicture.asset('assets/svg/slide-1.svg'),
@@ -15,6 +25,6 @@ class SlideShowPage extends StatelessWidget {
         SvgPicture.asset('assets/svg/slide-4.svg'),
         SvgPicture.asset('assets/svg/slide-5.svg'),
       ],
-    ));
+    );
   }
 }

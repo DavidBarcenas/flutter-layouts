@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class PinterestMenu extends StatelessWidget {
+  final bool show;
+
+  const PinterestMenu({this.show = true});
+
   @override
   Widget build(BuildContext context) {
     final List<PinterestButton> items = [
@@ -27,11 +31,12 @@ class PinterestMenu extends StatelessWidget {
           }),
     ];
 
-    return Center(
-      child: ChangeNotifierProvider(
-          create: (_) => new _MenuModel(),
-          child: _PinterestMenuBackground(child: _MenuItems(items))),
-    );
+    return ChangeNotifierProvider(
+        create: (_) => new _MenuModel(),
+        child: AnimatedOpacity(
+            opacity: (show) ? 1 : 0,
+            duration: Duration(milliseconds: 450),
+            child: _PinterestMenuBackground(child: _MenuItems(items))));
   }
 }
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class PinterestMenu extends StatelessWidget {
   @override
@@ -27,7 +28,9 @@ class PinterestMenu extends StatelessWidget {
     ];
 
     return Center(
-      child: _PinterestMenuBackground(child: _MenuItems(items)),
+      child: ChangeNotifierProvider(
+          create: (_) => new _MenuModel(),
+          child: _PinterestMenuBackground(child: _MenuItems(items))),
     );
   }
 }
@@ -77,11 +80,18 @@ class _PinterestMenuButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final itemSelected = Provider.of<_MenuModel>(context).itemSelected;
+
     return GestureDetector(
       child: Container(
-        child: Icon(item.icon, size: 25, color: Colors.black54),
+        child: Icon(item.icon,
+            size: (itemSelected == index) ? 30 : 25,
+            color: (itemSelected == index) ? Colors.red : Colors.black54),
       ),
-      onTap: item.onPressed,
+      onTap: () {
+        Provider.of<_MenuModel>(context, listen: false).itemSelected = index;
+        item.onPressed();
+      },
       behavior: HitTestBehavior.translucent,
     );
   }
@@ -92,4 +102,16 @@ class PinterestButton {
   final IconData icon;
 
   PinterestButton({@required this.onPressed, @required this.icon});
+}
+
+// ********** Provider *************
+class _MenuModel with ChangeNotifier {
+  int _itemSelected = 0;
+
+  int get itemSelected => _itemSelected;
+
+  set itemSelected(int index) {
+    this._itemSelected = index;
+    notifyListeners();
+  }
 }

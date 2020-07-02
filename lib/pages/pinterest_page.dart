@@ -25,7 +25,28 @@ class PinteresMenuPosition extends StatelessWidget {
     return Positioned(
         left: (MediaQuery.of(context).size.width / 2) - (250 / 2),
         bottom: 30,
-        child: PinterestMenu(show: show));
+        child: PinterestMenu(show: show, items: [
+          PinterestButton(
+              icon: Icons.pie_chart,
+              onPressed: () {
+                print('icon pie_chart');
+              }),
+          PinterestButton(
+              icon: Icons.search,
+              onPressed: () {
+                print('icon search');
+              }),
+          PinterestButton(
+              icon: Icons.notifications,
+              onPressed: () {
+                print('icon notifications');
+              }),
+          PinterestButton(
+              icon: Icons.supervised_user_circle,
+              onPressed: () {
+                print('icon supervised_user_circle');
+              }),
+        ]));
   }
 }
 

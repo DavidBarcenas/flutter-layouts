@@ -3,33 +3,42 @@ import 'package:provider/provider.dart';
 
 class PinterestMenu extends StatelessWidget {
   final bool show;
+  final Color background;
+  final Color activeColor;
+  final Color inactiveColor;
+  final List<PinterestButton> items;
 
-  const PinterestMenu({this.show = true});
+  const PinterestMenu(
+      {this.show = true,
+      this.background = Colors.white,
+      this.activeColor = Colors.red,
+      this.inactiveColor = Colors.black54,
+      @required this.items});
 
   @override
   Widget build(BuildContext context) {
-    final List<PinterestButton> items = [
-      PinterestButton(
-          icon: Icons.pie_chart,
-          onPressed: () {
-            print('icon pie_chart');
-          }),
-      PinterestButton(
-          icon: Icons.search,
-          onPressed: () {
-            print('icon search');
-          }),
-      PinterestButton(
-          icon: Icons.notifications,
-          onPressed: () {
-            print('icon notifications');
-          }),
-      PinterestButton(
-          icon: Icons.supervised_user_circle,
-          onPressed: () {
-            print('icon supervised_user_circle');
-          }),
-    ];
+    // final List<PinterestButton> items = [
+    // PinterestButton(
+    //     icon: Icons.pie_chart,
+    //     onPressed: () {
+    //       print('icon pie_chart');
+    //     }),
+    // PinterestButton(
+    //     icon: Icons.search,
+    //     onPressed: () {
+    //       print('icon search');
+    //     }),
+    // PinterestButton(
+    //     icon: Icons.notifications,
+    //     onPressed: () {
+    //       print('icon notifications');
+    //     }),
+    // PinterestButton(
+    //     icon: Icons.supervised_user_circle,
+    //     onPressed: () {
+    //       print('icon supervised_user_circle');
+    //     }),
+    // ];
 
     return ChangeNotifierProvider(
         create: (_) => new _MenuModel(),

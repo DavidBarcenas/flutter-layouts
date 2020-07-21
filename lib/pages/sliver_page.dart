@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class SliverPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: _Title());
+    return Scaffold(body: _List());
   }
 }
 
@@ -50,30 +50,46 @@ class _Title extends StatelessWidget {
 }
 
 class _List extends StatelessWidget {
+  final items = [
+    _ListItem('Orange', Color(0xffF08F66)),
+    _ListItem('Family', Color(0xffF2A38A)),
+    _ListItem('Subscriptions', Color(0xffF7CDD5)),
+    _ListItem('Books', Color(0xffFCEBAF)),
+    _ListItem('Orange', Color(0xffF08F66)),
+    _ListItem('Family', Color(0xffF2A38A)),
+    _ListItem('Subscriptions', Color(0xffF7CDD5)),
+    _ListItem('Books', Color(0xffFCEBAF)),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
         physics: BouncingScrollPhysics(),
-        itemCount: 20,
-        itemBuilder: (BuildContext context, int index) => _ListItem());
+        itemCount: items.length,
+        itemBuilder: (BuildContext context, int index) => items[index]);
   }
 }
 
 class _ListItem extends StatelessWidget {
+  final String title;
+  final Color color;
+
+  const _ListItem(this.title, this.color);
+
   @override
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.centerLeft,
       padding: EdgeInsets.symmetric(horizontal: 30),
       child: Text(
-        'Button',
+        title,
         style: TextStyle(
             fontWeight: FontWeight.bold, color: Colors.white, fontSize: 20),
       ),
       height: 100,
       margin: EdgeInsets.all(10),
-      decoration: BoxDecoration(
-          color: Colors.blue, borderRadius: BorderRadius.circular(30)),
+      decoration:
+          BoxDecoration(color: color, borderRadius: BorderRadius.circular(30)),
     );
   }
 }

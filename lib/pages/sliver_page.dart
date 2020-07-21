@@ -3,7 +3,34 @@ import 'package:flutter/material.dart';
 class SliverPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(backgroundColor: Colors.white, body: _MainScroll());
+    return Scaffold(
+        backgroundColor: Colors.white,
+        body: Stack(
+          children: <Widget>[
+            _MainScroll(),
+            Positioned(bottom: 0, right: 0, child: ButtonFixed())
+          ],
+        ));
+  }
+}
+
+class ButtonFixed extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
+    return ButtonTheme(
+      minWidth: size.width * 0.8,
+      child: RaisedButton(
+        onPressed: () {},
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(topLeft: Radius.circular(50))),
+        child: Text(
+          'CREATE NEW LIST',
+          style: TextStyle(color: Colors.white),
+        ),
+      ),
+    );
   }
 }
 

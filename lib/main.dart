@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:layouts/pages/emergency_page.dart';
+import 'package:layouts/pages/sliver_page.dart';
+// import 'package:layouts/pages/emergency_page.dart';
 // import 'package:layouts/pages/pinterest_page.dart';
 // import 'package:layouts/pages/slideshow_page.dart';
 
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: EmergencyPage(),
+      home: SliverPage(),
     );
   }
 }

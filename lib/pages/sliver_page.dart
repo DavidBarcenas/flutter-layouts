@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class SliverPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: _MainScroll());
+    return Scaffold(backgroundColor: Colors.white, body: _MainScroll());
   }
 }
 
@@ -24,14 +24,60 @@ class _MainScroll extends StatelessWidget {
     return CustomScrollView(
       physics: BouncingScrollPhysics(),
       slivers: <Widget>[
-        SliverAppBar(
+        // SliverAppBar(
+        //   floating: true,
+        //   backgroundColor: Colors.red,
+        //   title: Text('Prueba'),
+        // ),
+        SliverPersistentHeader(
           floating: true,
-          backgroundColor: Colors.red,
-          title: Text('Prueba'),
+          delegate: _SliverCustom(
+              minHeight: 170,
+              maxHeight: 180,
+              child: Container(color: Colors.white, child: _Title())),
         ),
-        SliverList(delegate: SliverChildListDelegate(items))
+        SliverList(
+            delegate: SliverChildListDelegate([
+          ...items,
+          SizedBox(
+            height: 150,
+          )
+        ]))
       ],
     );
+  }
+}
+
+class _SliverCustom extends SliverPersistentHeaderDelegate {
+  final double minHeight, maxHeight;
+  final Widget child;
+
+  _SliverCustom(
+      {@required this.minHeight,
+      @required this.maxHeight,
+      @required this.child});
+
+  @override
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return SizedBox.expand(
+      child: child,
+    );
+  }
+
+  @override
+  // TODO: implement maxExtent
+  double get maxExtent => (minHeight > maxHeight) ? minHeight : maxHeight;
+
+  @override
+  // TODO: implement minExtent
+  double get minExtent => (maxHeight > minHeight) ? maxHeight : minHeight;
+
+  @override
+  bool shouldRebuild(_SliverCustom oldDelegate) {
+    return maxHeight != oldDelegate.maxHeight ||
+        minHeight != oldDelegate.minHeight ||
+        child != oldDelegate.child;
   }
 }
 

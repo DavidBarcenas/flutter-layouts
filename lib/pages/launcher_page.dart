@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:layouts/routes/routes.dart';
 
 class LauncherPage extends StatelessWidget {
   @override
@@ -22,17 +23,18 @@ class _OptionsList extends StatelessWidget {
         padding: EdgeInsets.all(0),
         itemBuilder: (context, i) => ListTile(
               leading: FaIcon(
-                FontAwesomeIcons.slideshare,
+                pageRoutes[i].icon,
                 color: Colors.blue,
               ),
-              title: Text('Prueba'),
+              title: Text(pageRoutes[i].title),
               trailing: Icon(Icons.keyboard_arrow_right),
-              onTap: () {},
+              onTap: () => Navigator.push(context,
+                  MaterialPageRoute(builder: (_) => pageRoutes[i].page)),
             ),
         separatorBuilder: (context, i) => Divider(
               color: Colors.grey,
             ),
-        itemCount: 10);
+        itemCount: pageRoutes.length);
   }
 }
 

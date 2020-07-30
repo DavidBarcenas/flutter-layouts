@@ -69,6 +69,7 @@ class _MainMenu extends StatelessWidget {
               leading: Icon(Icons.lightbulb_outline, color: Colors.blue),
               title: Text('Dark Mode'),
               trailing: Switch.adaptive(
+                  activeColor: Colors.blue,
                   value: appTheme.darMode,
                   onChanged: (value) => appTheme.darkMode = value),
             ),
@@ -77,6 +78,7 @@ class _MainMenu extends StatelessWidget {
               title: Text('Custom Theme'),
               trailing: Switch.adaptive(
                   value: appTheme.customTheme,
+                  activeColor: Colors.blue,
                   onChanged: (value) => appTheme.customTheme = value),
             ),
           ],

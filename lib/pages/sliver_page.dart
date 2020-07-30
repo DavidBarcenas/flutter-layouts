@@ -93,11 +93,9 @@ class _SliverCustom extends SliverPersistentHeaderDelegate {
   }
 
   @override
-  // TODO: implement maxExtent
   double get maxExtent => (minHeight > maxHeight) ? minHeight : maxHeight;
 
   @override
-  // TODO: implement minExtent
   double get minExtent => (maxHeight > minHeight) ? maxHeight : minHeight;
 
   @override

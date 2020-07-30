@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:layouts/theme/theme.dart';
 import 'package:provider/provider.dart';
 
 class SlideShow extends StatelessWidget {
@@ -25,7 +26,11 @@ class SlideShow extends StatelessWidget {
           child: Center(child: Builder(
             builder: (BuildContext context) {
               Provider.of<_SlideShowModel>(context).primaryColor =
-                  this.primaryColor;
+                  Provider.of<ThemeChanger>(context).darMode
+                      ? Provider.of<ThemeChanger>(context)
+                          .currenTheme
+                          .accentColor
+                      : this.primaryColor;
               Provider.of<_SlideShowModel>(context).secondaryColor =
                   this.secondaryColor;
               Provider.of<_SlideShowModel>(context).primaryBullet =

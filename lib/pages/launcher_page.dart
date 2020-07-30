@@ -20,13 +20,15 @@ class LauncherPage extends StatelessWidget {
 class _OptionsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final theme = Provider.of<ThemeChanger>(context).currenTheme;
+
     return ListView.separated(
         physics: BouncingScrollPhysics(),
         padding: EdgeInsets.all(0),
         itemBuilder: (context, i) => ListTile(
               leading: FaIcon(
                 pageRoutes[i].icon,
-                color: Colors.blue,
+                color: theme.accentColor,
               ),
               title: Text(pageRoutes[i].title),
               trailing: Icon(Icons.keyboard_arrow_right),
@@ -34,7 +36,7 @@ class _OptionsList extends StatelessWidget {
                   MaterialPageRoute(builder: (_) => pageRoutes[i].page)),
             ),
         separatorBuilder: (context, i) => Divider(
-              color: Colors.grey,
+              color: theme.primaryColorLight,
             ),
         itemCount: pageRoutes.length);
   }
@@ -55,7 +57,7 @@ class _MainMenu extends StatelessWidget {
                 width: double.infinity,
                 height: 150,
                 child: CircleAvatar(
-                  backgroundColor: Colors.blue,
+                  backgroundColor: appTheme.currenTheme.accentColor,
                   child: Text(
                     'DB',
                     style: TextStyle(fontSize: 50),
@@ -66,19 +68,21 @@ class _MainMenu extends StatelessWidget {
             Expanded(child: _OptionsList()),
             SizedBox(height: 20),
             ListTile(
-              leading: Icon(Icons.lightbulb_outline, color: Colors.blue),
+              leading: Icon(Icons.lightbulb_outline,
+                  color: appTheme.currenTheme.accentColor),
               title: Text('Dark Mode'),
               trailing: Switch.adaptive(
-                  activeColor: Colors.blue,
+                  activeColor: appTheme.currenTheme.accentColor,
                   value: appTheme.darMode,
                   onChanged: (value) => appTheme.darkMode = value),
             ),
             ListTile(
-              leading: Icon(Icons.add_to_home_screen, color: Colors.blue),
+              leading: Icon(Icons.add_to_home_screen,
+                  color: appTheme.currenTheme.accentColor),
               title: Text('Custom Theme'),
               trailing: Switch.adaptive(
                   value: appTheme.customTheme,
-                  activeColor: Colors.blue,
+                  activeColor: appTheme.currenTheme.accentColor,
                   onChanged: (value) => appTheme.customTheme = value),
             ),
           ],

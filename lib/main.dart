@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:layouts/pages/launcher_page.dart';
+import 'package:layouts/theme/theme.dart';
+import 'package:provider/provider.dart';
 // import 'package:layouts/pages/sliver_page.dart';
 // import 'package:layouts/pages/emergency_page.dart';
 // import 'package:layouts/pages/pinterest_page.dart';
 // import 'package:layouts/pages/slideshow_page.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(ChangeNotifierProvider(create: (_) => ThemeChanger(), child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {

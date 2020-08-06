@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:layouts/models/layout_model.dart';
 import 'package:layouts/pages/slideshow_page.dart';
 import 'package:provider/provider.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -8,6 +9,8 @@ import 'package:layouts/theme/theme.dart';
 class LauncherTabletPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final layoutModel = Provider.of<LayoutModel>(context);
+
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
@@ -23,7 +26,7 @@ class LauncherTabletPage extends StatelessWidget {
               child: _OptionsList(),
             ),
             Expanded(
-              child: SlideShowPage(),
+              child: layoutModel.currentPage,
             )
           ],
         ));
@@ -40,15 +43,18 @@ class _OptionsList extends StatelessWidget {
         physics: BouncingScrollPhysics(),
         padding: EdgeInsets.all(0),
         itemBuilder: (context, i) => ListTile(
-              leading: FaIcon(
-                pageRoutes[i].icon,
-                color: theme.accentColor,
-              ),
-              title: Text(pageRoutes[i].title),
-              trailing: Icon(Icons.keyboard_arrow_right),
-              onTap: () => Navigator.push(context,
-                  MaterialPageRoute(builder: (_) => pageRoutes[i].page)),
+            leading: FaIcon(
+              pageRoutes[i].icon,
+              color: theme.accentColor,
             ),
+            title: Text(pageRoutes[i].title),
+            trailing: Icon(Icons.keyboard_arrow_right),
+            onTap: () {
+              // Navigator.push(context, MaterialPageRoute(builder: (_) => pageRoutes[i].page)),
+              final layoutModel =
+                  Provider.of<LayoutModel>(context, listen: false);
+              layoutModel.currentPage = pageRoutes[i].page;
+            }),
         separatorBuilder: (context, i) => Divider(
               color: theme.primaryColorLight,
             ),

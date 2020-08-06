@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:layouts/models/layout_model.dart';
 import 'package:layouts/pages/launcher_page.dart';
 import 'package:layouts/pages/launcher_tablet_page.dart';
 import 'package:layouts/theme/theme.dart';
@@ -8,9 +9,15 @@ import 'package:provider/provider.dart';
 // import 'package:layouts/pages/pinterest_page.dart';
 // import 'package:layouts/pages/slideshow_page.dart';
 
+// void main() {
+//   runApp(MultiProvider(
+//       providers: [Provider(create: (_) => ThemeChanger(1))], child: MyApp()));
+// }
 void main() {
-  runApp(
-      ChangeNotifierProvider(create: (_) => ThemeChanger(1), child: MyApp()));
+  runApp(ChangeNotifierProvider(
+      create: (_) => LayoutModel(),
+      child: ChangeNotifierProvider(
+          create: (_) => ThemeChanger(1), child: MyApp())));
 }
 
 class MyApp extends StatelessWidget {

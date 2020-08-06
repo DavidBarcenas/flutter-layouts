@@ -5,11 +5,20 @@ import 'package:layouts/widgets/slideshow.dart';
 class SlideShowPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: Column(children: [
+    bool isLarge;
+    if (MediaQuery.of(context).size.height > 500) {
+      isLarge = true;
+    } else {
+      isLarge = false;
+    }
+
+    final children = [
       Expanded(child: WrapSlideshow()),
       Expanded(child: WrapSlideshow())
-    ]));
+    ];
+
+    return Scaffold(
+        body: (isLarge) ? Column(children: children) : Row(children: children));
   }
 }
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:layouts/pages/launcher_page.dart';
+import 'package:layouts/pages/launcher_tablet_page.dart';
 import 'package:layouts/theme/theme.dart';
 import 'package:provider/provider.dart';
 // import 'package:layouts/pages/sliver_page.dart';
@@ -20,7 +21,24 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Layouts',
       theme: Provider.of<ThemeChanger>(context).currenTheme,
-      home: LauncherPage(),
+      home: OrientationBuilder(
+        builder: (BuildContext context, Orientation orientation) {
+          // return Container(
+          //   child: LauncherPage(),
+          // );
+          final screenSize = MediaQuery.of(context).size;
+
+          if (screenSize.width > 500) {
+            return Container(
+              child: LauncherTabletPage(),
+            );
+          } else {
+            return Container(
+              child: LauncherPage(),
+            );
+          }
+        },
+      ),
     );
   }
 }

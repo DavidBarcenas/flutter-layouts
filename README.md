@@ -1,16 +1,20 @@
-# layouts
+# Layouts
 
-A new Flutter project.
+Laboratorio del curso de diseños profesionales con flutter (Slideshow / Pinterest / Emergency / Silver)
 
-## Getting Started
+## Preview
+![](/.readme-static/app.jpg)
 
-This project is a starting point for a Flutter application.
+## Content
 
-A few resources to get you started if this is your first Flutter project:
+* Use Provider
+* Slideshow
+* Android Physics
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## Project setup
+```
+flutter pub get
+```
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## License
+Released under the MIT License

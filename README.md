@@ -1,6 +1,6 @@
 # Layouts
 
-Laboratorio del curso de diseños profesionales con flutter (Slideshow / Pinterest / Emergency / Silver)
+Professional Flutter Designs Course Lab (Slideshow / Pinterest / Emergency / Silver)
 
 ## Preview
 ![](/.readme-static/app.jpg)
